@@ -59,7 +59,7 @@ public class PersonaController {
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtoper){
         //Validamos si existe el ID
         if(!personaService.existsById(id))
-            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         //Compara nombre de persona
         if(personaService.existsByNombre(dtoper.getNombre()) && personaService.getByNombre(dtoper.getNombre()).get().getId() != id)
             return new ResponseEntity(new Mensaje("Ese Nombre ya existe"), HttpStatus.BAD_REQUEST);

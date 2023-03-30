@@ -53,7 +53,7 @@ public class CHys {
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoHys dtohys){
         //Validamos si existe el ID
         if(!shys.existsById(id))
-            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         //Compara nombre de Skill
         if(shys.existsByNombre(dtohys.getNombre()) && shys.getByNombre(dtohys.getNombre()).get().getId() != id)
             return new ResponseEntity(new Mensaje("Esa Skill ya existe"), HttpStatus.BAD_REQUEST);
